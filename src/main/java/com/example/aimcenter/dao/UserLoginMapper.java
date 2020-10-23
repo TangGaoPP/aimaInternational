@@ -15,5 +15,5 @@ public interface UserLoginMapper extends BaseMapper<UserLogin> {
     String getUserByName(String loginid);
 
    /* @Select("select count(1) from user_login where login_id =#{loginid} and psd =#{psd} and username = #{username}")*/
-    int IsRegistera( String loginid, String psd,  String username);
+    int IsRegistera( String loginid, String psd);
 }

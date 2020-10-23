@@ -1,5 +1,6 @@
 package com.example.aimcenter.Controller.Login;
 
+import com.example.aimcenter.Controller.PageController;
 import com.example.aimcenter.dao.UserLoginMapper;
 import com.example.aimcenter.entitiy.UserLogin;
 import org.apache.ibatis.annotations.Param;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/aima")
@@ -18,6 +18,7 @@ public class LoginController {
 
     @Autowired
     private UserLoginMapper userLoginMapper;
+
 
     @GetMapping("getUserList")
     public List<UserLogin> getUserList(){
@@ -30,10 +31,4 @@ public class LoginController {
         return userLoginMapper.getUserByName(loginid);
     }
 
-    @GetMapping("/isRegister")
-    public String  IsRegistera(String loginid,  String psd,  String username){
-        int a= userLoginMapper.IsRegistera(loginid,psd,username);
-           System.out.println(a);
-        return "";
-    }
 }

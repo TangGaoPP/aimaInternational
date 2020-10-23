@@ -1,10 +1,15 @@
 package com.example.aimcenter.Controller.ErrorController;
 
 import org.springframework.boot.autoconfigure.web.ErrorController;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+/**
+ * 系统报错统一处理
+ * 2020年10月23日11:44:19
+ * 汪涛
+ */
+@Controller
 public class CommonErrorController  implements ErrorController {
 
     private final String ERROR_PATH = "/error";
@@ -14,8 +19,8 @@ public class CommonErrorController  implements ErrorController {
     }
 
     @RequestMapping(value = ERROR_PATH)
-    public void handleError(){
+    public String handleError(){
         System.out.println(getErrorPath());
-      //  HandleErrorController.handleError();
+        return "/error/err1";
     }
 }

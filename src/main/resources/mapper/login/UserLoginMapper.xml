@@ -9,6 +9,6 @@
     </select>
 
     <select id="IsRegistera" resultType="int">
-     select count(1) from user_login where login_id = #{arg0} and psd =#{arg1} and username=#{arg2}
+     select count(1) from user_login where login_id = #{arg0} and psd =#{arg1}
     </select>
 </mapper>

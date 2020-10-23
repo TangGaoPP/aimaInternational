@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.aimcenter.dao.UserLoginMapper">
+    <resultMap id="user" type="com.example.aimcenter.entitiy.UserLogin"/>
+    <parameterMap id="user" type="com.example.aimcenter.entitiy.UserLogin"/>
+
+    <select id="getUserList" resultMap="user">
+        SELECT  * FROM user_login
+    </select>
+
+    <select id="IsRegistera" resultType="int">
+     select count(1) from user_login where login_id = #{arg0} and psd =#{arg1} and username=#{arg2}
+    </select>
+</mapper>

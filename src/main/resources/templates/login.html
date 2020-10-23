@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!--解决th报错 -->
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+   <title>爱玛家国际月子会所前台系统</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="css/login/style.css" type="text/css" media="all" /><!-- Style-CSS -->
+   <link href="css/login/font-awesome.css" rel="stylesheet">
+    <script src="js/jquery/jquery-3.3.1.js"></script>
+      <script src="js/jquery/jquery-3.3.1.min.js"></script>
+      <script src="js/syalert.min.js"></script>
+   <!-- font-awesome-icons -->
+</head>
+<body>
+<section class="w3l-form-36">
+	<div class="form-36-mian section-gap">
+		<div class="wrapper">
+			<div class="form-inner-cont">
+				<h3>爱玛家国际月子会所</h3>
+				<form action="#" method="post" class="signin-form">
+					<div class="form-input">
+						<span class="fa fa-envelope-o" aria-hidden="true"></span> <input type="text" name="login_id"
+						 id="login_id" placeholder="用户名" required />
+					</div>
+					<div class="form-input">
+						<span class="fa fa-key" aria-hidden="true"></span> <input id="psd" type="password" name="password" placeholder="密码"
+							required />
+					</div>
+					<div class="login-remember d-grid">
+						<label class="check-remaind">
+							<input type="checkbox">
+							<span class="checkmark"></span>
+							<p class="remember">记住密码</p>
+						</label>
+						<button class="btn theme-button">登录</button>
+					</div>
+					<div class="new-signup">
+						<a href="#reload" class="signuplink">忘记密码?</a>
+					</div>
+				</form>
+				<!--<div class="social-icons">
+					<p class="continue"><span>Or</span></p>
+					<div class="social-login">
+						<a href="#facebook">
+							<div class="facebook">
+								<span class="fa fa-facebook" aria-hidden="true"></span>
+
+							</div>
+						</a>
+						<a href="#google">
+							<div class="google">
+								<span class="fa fa-google-plus" aria-hidden="true"></span>
+							</div>
+						</a>
+					</div>
+				</div>-->
+				<!--<p class="signup">Don’t have an account? <a href="#signup.html" class="signuplink">Sign up</a></p>-->
+			</div>
+
+			<!-- copyright -->
+			<div class="copy-right">
+				<p>Copyright &copy; 2020.WT All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">AiMaHome International</a></p>
+			</div>
+			<!-- //copyright -->
+		</div>
+	</div>
+</section>
+</body>
+<script>
+ /* $(function() {
+   init();
+  })*/
+    /**
+    * 登录
+    * 2020年10月22日15:10:12
+    * 汪涛
+    */
+  function login() {
+    var loginid= $("#login_id").val();
+    var psd = $("#psd").val();
+    debugger;
+    $.ajax({
+    url:'/LoginAima',
+    data:{"loginid":loginid,"psd":psd},
+    type:'post',
+    success:function(data) {
+      console.log("########");
+    }
+    })
+  }
+</script>
+</html>

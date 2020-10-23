@@ -1,16 +1,31 @@
 package com.example.aimcenter.config.interceptor;
 
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.support.XmlWebApplicationContext;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.*;
 
 @Component
 public class LoginInterceptor  implements HandlerInterceptor {
 
+    Logger logger = Logger.getLogger(LoginInterceptor.class);
+
+  private static final Set<String> WHITE_URI = new HashSet<>();
+
+
+    static {
+         WHITE_URI.add("/login");
+         WHITE_URI.add("/loginBusiness");
+         WHITE_URI.add("/static/**");
+        WHITE_URI.add("/error");
+    }
 
     /**
      * 进入Controller 前进行校验
@@ -23,15 +38,19 @@ public class LoginInterceptor  implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession();
+
         System.out.println(session.getAttribute("usersession"));
-        if(request.getRequestURI().indexOf("/login") == -1 || session.getAttribute("usersession") == null){
-            //这个方法返回false表示忽略当前请求，如果一个用户调用了需要登陆才能使用的接口，如果他没有登陆这里会直接忽略掉
-            //当然你可以利用response给用户返回一些提示信息，告诉他没登陆
+        if(WHITE_URI.contains(request.getRequestURI())){
+
+            logger.info("不拦截"+request.getRequestURI());
+            return true;
+        }else if(request.getSession().getAttribute("usersession") != null){
+            logger.info("不拦截"+request.getRequestURI()+"-"+request.getSession().getAttribute("usersession"));
+            return true;
+        }else{
+            logger.info("拦截到了"+request.getRequestURI());
             response.sendRedirect("/login");
             return false;
-        }else{
-         System.out.println("%%%%%%%%%%%%%%");
-            return true;  //如果session里有user，表示该用户已经登陆，放行，用户即可继续调用自己需要的接口
         }
 
     }

@@ -3,6 +3,7 @@ package com.example.aimcenter.Controller;
 import com.example.aimcenter.dao.UserLoginMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import sun.misc.BASE64Decoder;
 
@@ -23,6 +24,7 @@ public class PageController {
 
     @Autowired
     private UserLoginMapper userLoginMapper;
+
     /**
      * 首页
      * @return
@@ -34,7 +36,7 @@ public class PageController {
 
 
     @RequestMapping("/loginBusiness")
-    public String loginBusiness(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String loginBusiness(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) throws IOException {
         Map<String,String> sessionmap = new HashMap<>();
         String login_id = request.getParameter("login_id");
         String psd = request.getParameter("password");
@@ -46,12 +48,14 @@ public class PageController {
             sessionmap.put("login_id",login_id);
             sessionmap.put("psd",jmpsd);
             session.setAttribute("usersession",sessionmap);
-            return "/menu/menu";
+            modelMap.addAttribute("usersession",sessionmap);
+           return "/menu/menu";
         }else{
-
-        System.out.println("@@@@@@@@@@@@@@"+login_id+"&&&"+psd);
-        return "/login";
+            System.out.println("@@@@@@@@@@@@@@"+login_id+"&&&"+psd);
+            return "/login";
         }
     }
+
+
 
 }

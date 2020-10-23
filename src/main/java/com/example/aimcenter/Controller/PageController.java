@@ -11,7 +11,7 @@ public class PageController {
      */
     @RequestMapping("/login")
     public String login_index(){
-        return "error/err1";
+        return "login";
     }
 
 
